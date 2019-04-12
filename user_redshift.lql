@@ -1,7 +1,7 @@
 /*
 Master Redshift data via S3 import.
 */
-SELECT 
+SELECT
 
     -- Audience custom translation
     `audience`                                                                AS audience_type_code                                                  SHORTDESC "The user's audience type code"
@@ -48,10 +48,8 @@ SELECT
     , `offer_description_clean`                                               AS cart_abandon_offer_description_clean                                SHORTDESC "Cart: Abandon Offer Description (Clean)"
     , `offer_id`                                                              AS cart_abandon_offer_id                                               SHORTDESC "Cart: Abandon Offer Id"
     , `user_type_description`                                                 AS cart_abandon_user_type                                              SHORTDESC "Cart: Abandon User Type"
-    , `country`                                                               AS country                                                             SHORTDESC "Country"
-    , `culturecode`                                                           AS culture_code                                                        SHORTDESC "Culture Code"
-    , toint(`age`)                                                            AS dna_activator_age                                                   SHORTDESC "DNA: Activator Age"
-    , `gender`                                                                AS dna_activator_gender                                                SHORTDESC "DNA: Activator Gender"
+    , `country`                                                               AS country                                                             SHORTDESC "Country"    
+    , toint(`age`)                                                            AS dna_activator_age                                                   SHORTDESC "DNA: Activator Age"    
     , `geo_activator`                                                         AS dna_activator_geo                                                   SHORTDESC "DNA: Activator Geo"
     , tobool(`matches_consent`)                                               AS dna_activator_matches_consent                                       SHORTDESC "DNA: Activator Matches Consent"
     , `geo_purchaser`                                                         AS dna_geo_purchaser                                                   SHORTDESC "DNA: Geo Purchaser"
@@ -69,8 +67,7 @@ SELECT
     , `sub_type_au_only`                                                      AS dna_sub_type_au_only                                                SHORTDESC "DNA: Subscription Type (AU)"
     , toint(`total_orders`)                                                   AS dna_total_orders                                                    SHORTDESC "DNA: Total Kits Purchased"
     , tobool(`email_isondonotemail`)                                          AS do_not_email                                                        SHORTDESC "Email: Do Not Email"
-    , tobool(`email_imsbounced`)                                              AS email_bounced                                                       SHORTDESC "Email: Has Email Bounced"
-    , `firstname`                                                             AS firstname                                                           SHORTDESC "First Name"
+    , tobool(`email_imsbounced`)                                              AS email_bounced                                                       SHORTDESC "Email: Has Email Bounced"    
     , todate(`expirationdate_purchaser`)                                      AS giftsub_expirationdate_purchaser                                    SHORTDESC "GiftSub: Purchased Expiration Date"
     , tobool(`giftsub_redeemed`)                                              AS giftsub_redeemed                                                    SHORTDESC "GiftSub: Was Redeemed"
     , todate(`expirationdate_redeemer`)                                       AS giftsub_redeemer_expirationdate                                     SHORTDESC "GiftSub: Redeemer Expiration Date"
@@ -79,8 +76,7 @@ SELECT
     , toint(`newcontent_grouping`)                                            AS internal_newcontent_grouping                                        SHORTDESC "Internal: New Content Grouping"
     , tobool(`currentacomsuber`)                                              AS behavior_is_current_subscriber                                      SHORTDESC "Behavior: Is Current Subscriber"
     , tobool(`currentacomtrialer`)                                            AS behavior_is_current_trialer                                         SHORTDESC "Behavior: Is Current Trialer"
-    , tobool(`acomregistrant`)                                                AS behavior_is_registrant                                              SHORTDESC "Behavior: Is Current Registrant"
-    , `lastname`                                                              AS lastname                                                            SHORTDESC "Last Name"
+    , tobool(`acomregistrant`)                                                AS behavior_is_registrant                                              SHORTDESC "Behavior: Is Current Registrant"    
     , `postalcode`                                                            AS postalcode                                                          SHORTDESC "Postal Code"
     , tobool(`ustips`)                                                        AS preferences_newsletter_us_tips                                      SHORTDESC "Prefs: Opt-In Newsletter US Tips"
     , tobool(`uknewslettersoffers`)                                           AS preferences_newsletter_uk_offers                                    SHORTDESC "Prefs: Opt-In Newsletter UK Offers"
@@ -135,9 +131,7 @@ SELECT
     , tobool(`itsurveysfeedback`)                                             AS preferences_newsletter_it_surveys                                   SHORTDESC "Prefs: Opt-In Newsletter IT Surveys"
     , tobool(`mxpromotionsevents`)                                            AS preferences_newsletter_mx_promos                                    SHORTDESC "Prefs: Opt-In Newsletter MX Promos"
     , tobool(`mxnewsinfo`)                                                    AS preferences_newsletter_mx_news                                      SHORTDESC "Prefs: Opt-In Newsletter MX News"
-    , tobool(`mxsurveysfeedback`)                                             AS preferences_newsletter_mx_surveys                                   SHORTDESC "Prefs: Opt-In Newsletter MX Surveys"    
-    , `acomregistrationtype`                                                  AS registration_channel                                                SHORTDESC "Registration: Channel"
-    , todate(`registrationdate`)                                              AS registration_date                                                   SHORTDESC "Registration: Date"   KIND DATE   MERGEOP oldest
+    , tobool(`mxsurveysfeedback`)                                             AS preferences_newsletter_mx_surveys                                   SHORTDESC "Prefs: Opt-In Newsletter MX Surveys"        
     , `acomregistrationsitelocality`                                          AS registration_locale                                                 SHORTDESC "Registration: Locale"
     , `acomregistrationsite`                                                  AS registration_site_parent                                            SHORTDESC "Registration: Parent Site"
     , `acomregistrationsitepartner`                                           AS registration_site_partner                                           SHORTDESC "Registration: Partner Site"
@@ -172,6 +166,10 @@ SELECT
     , todate(`firsttrialenddate`)                                             AS subscription_trial_first_end                                        SHORTDESC "Subscription: Trial First End Date"        
     , `subscription_usertype`                                                 AS subscription_usertype                                               SHORTDESC "Subscription: User type (Core/ High/ Low/ Dormant)"
     , todate(`true_winback_resub_startdate`)                                  AS subscription_winback_resub_startdate                                SHORTDESC "Subscription: Winback Resub Start Date"
+    , tobool(`ever_purchased_traits`)                                         AS traits_ever_purchased                                               SHORTDESC "Traits: Ever Purchased Traits"
+    , todate(`last_purchased_traits`)                                         AS traits_last_purchased                                               SHORTDESC "Traits: Last Purchased Traits Date"
+    , `traits_purchase_type`                                                  AS traits_purchase_type                                                SHORTDESC "Traits: Traits Purchase Type"
+    , toint(`total_purchased_traits`)                                         AS traits_total_purchased                                              SHORTDESC "Traits: Total Purchased Traits"
     , tobool(`hastree`)                                                       AS tree_has_tree                                                       SHORTDESC "Tree: Has Tree"
     , todate(`latestattachedrecordcreated`)                                   AS tree_last_modified_attach_record_date                               SHORTDESC "Tree: Last Modified Attach Record Date"
     , todate(`lasttreemodify`)                                                AS tree_last_modified_date                                             SHORTDESC "Tree: Last Modified Date"
@@ -185,7 +183,9 @@ SELECT
     , tonumber(`user_avg_monthly_content`)                                    AS user_avg_monthly_content                                            SHORTDESC "User: Average monthly content uploaded"
     , tonumber(`user_avg_monthly_hints_accepted`)                             AS user_avg_monthly_hints_accepted                                     SHORTDESC "User: Average monthly hints accepted"
     , tonumber(`user_avg_monthly_search`)                                     AS user_avg_monthly_search                                             SHORTDESC "User: Average monthly search performed"
-    , 'test-string'  AS 'test-string-test' SHORTDESC "test string"
+    , tonumber('ltr')                                                         AS user_ltr                                                            SHORTDESC "User: Life Time Revenue"
+    , tonumber('ltr_with_dna')                                                AS user_ltr_with_dna                                                   SHORTDESC "User: LTR with DNA"                   
+    , match("cookies_optin_")                                                 AS user_cookies_optin                                                  SHORTDESC "User: Cookies optin"  KIND map[string]bool
     -- By Fields
     , string.uppercase(`ucdmid`)                                              AS ucdmid IF ne(`ucdmid`,"00000000-0000-0000-0000-000000000000")       SHORTDESC "ucdmid"
     , email(`email`)                                                          AS email                                                               SHORTDESC "email"
