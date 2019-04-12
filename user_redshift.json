@@ -171,6 +171,14 @@
     "user_avg_monthly_content": "34.2",
     "user_avg_monthly_hints_accepted": "34.2",
     "user_avg_monthly_search": "34.4",
-    "ucdmid": "userid",
-    "test-string": "teswt-value"
+    "ever_purchased_traits": "true",
+    "last_purchased_traits": "2019-03-21T00:00Z",
+    "traits_purchase_type": "string",
+    "total_purchased_traits": "2",
+    "ltr": "56.9",
+    "ltr_with_dna": "78.9",
+    "cookies_optin_advertising": "true",
+    "cookies_optin_performance": "false",
+    "cookies_optin_preference": "false",
+    "ucdmid": "userid"
 }
